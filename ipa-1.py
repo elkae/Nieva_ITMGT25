@@ -6,7 +6,7 @@ This assignment will develop your basic familiarity with Python.
 '''
 
 def savings(gross_pay, tax_rate, expenses):
-    after_tax_pay = (gross_pay - (gross_pay * tax_rate)//1)
+    after_tax_pay = gross_pay - ((gross_pay * tax_rate)//1)
     return int(after_tax_pay - expenses)
 
     '''Savings.
