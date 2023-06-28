@@ -8,15 +8,12 @@ This assignment will develop your proficiency with Python's control flows.
 def shift_letter(letter, shift):
     if letter == " ":
         return " "
-    
     if letter != " ":
         alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         position = alphabet.index(letter)
         shifted_position = position + shift
-        
         if shifted_position <= 25:
             return str(alphabet[shifted_position])
-
         elif shifted_position > 25:
             shifted_position_2 = shifted_position % 26
             return str(alphabet[shifted_position_2])
@@ -56,7 +53,6 @@ def shift_letter(letter, shift):
 
 def caesar_cipher(message, shift):
     new_message = ""
-    
     for char in message:
         if char.isupper():
             position = ord(char) - ord("A")
@@ -64,8 +60,7 @@ def caesar_cipher(message, shift):
             new_char = chr(shifted_position + ord("A"))
         else:
             new_char = char          
-        new_message += new_char
-        
+        new_message += new_char  
     return str(new_message)
 
     '''Caesar Cipher.
@@ -95,7 +90,6 @@ def shift_by_letter(letter, letter_shift):
         pos2 = ord(letter_shift) - ord("A")
         shifted_pos = (pos1 + pos2) % 26
         return chr(shifted_pos + ord("A"))
-
     else:
         return str(" ")
     
@@ -130,7 +124,6 @@ def shift_by_letter(letter, letter_shift):
 
 def vigenere_cipher(message, key):
     shifted_message = ""
-    
     if len(message) == len(key):
         for i, char in enumerate(message):
             if char.isupper():
@@ -139,8 +132,7 @@ def vigenere_cipher(message, key):
                 new_char = chr((ord(char) - ord('A') + shift) % 26 + ord('A'))
             else:
                 new_char = char
-            shifted_message += new_char
-            
+            shifted_message += new_char      
     elif len(message) > len(key):
         repeat = len(message) // len(key)
         remainder = len(message) % len(key)
@@ -153,7 +145,6 @@ def vigenere_cipher(message, key):
             else:
                 new_char = char
             shifted_message += new_char
-    
     return str(shifted_message)
 
     
@@ -191,7 +182,6 @@ def vigenere_cipher(message, key):
 
 def scytale_cipher(message, shift):
     encoded_message = ""
-
     if len(message) % shift == 0:
         num_rows = len(message) // shift
         for i in range(len(message)):
@@ -199,7 +189,6 @@ def scytale_cipher(message, shift):
             col = (i % shift) * num_rows
             init = row + col
             encoded_message += message[init]
-
     else:
         new_message = message + "_" * (shift - len(message) % shift)
         num_rows = len(new_message) // shift
@@ -208,7 +197,6 @@ def scytale_cipher(message, shift):
             col = (i % shift) * num_rows
             init = row + col
             encoded_message += new_message[init]
-
     return str(encoded_message)
     
     '''Scytale Cipher.
@@ -269,16 +257,13 @@ def scytale_decipher(message, shift):
     init = 0
     num_col = len(message) // shift
     mtrx = [[''] * num_col for i in range(shift)]
-
     for col in range(num_col):
         for row in range(shift):
             mtrx[row][col] = message[init]
-            init += 1
-            
+            init += 1       
     for row in range(shift):
         for col in range(num_col):
             deci_message += mtrx[row][col]
-
     return str(deci_message)
     
     '''Scytale De-cipher.
